@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import './styles.css'
+import { Box, Button, Typography } from '@material-ui/core'
+import BlackJack from './BlackJack'
 
-function App() {
+export default function App() {
+  function handleClick() {}
+  // prettier-ignore
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Box className="App">
+      <Typography variant="h1">
+        <Box className={"h1-header"}>BlackJack</Box>
+      </Typography>
+      <Typography variant="h2">
+        <Box className={"h2-header"}>on Codesandbox</Box>
+      </Typography>
+      <Box id="table">
+        {/* Task */}
+      </Box>
+    </Box>
   );
 }
-
-export default App;
