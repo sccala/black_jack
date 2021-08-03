@@ -4,23 +4,11 @@ import { useStyles } from "../hooks/useStyles";
 import Card from "./Card";
 import * as BJUtils from "../utils/BlackJackUtils";
 
-/**
- * プレイエリアコンポーネント
- * -----
- *
- * @param {object} props
- * @return {JSX.Element} プレイエリアコンポーネント
- */
+
 export default function PlayArea(props) {
   const classes = useStyles();
 
-  /**
-   * ディーラー用チップ取得
-   * -----
-   * ディーラーがブラックジャックまたはバーストしたかを表示する Chip コンポーネントを返却する
-   *
-   * @return {Chip} Chip
-   */
+  
   function getDealersChip() {
     if (BJUtils.isBlackJack(props.dealersHand)) {
       return <Chip label="BLACK JACK!!" className={classes.winOrLose} />;
@@ -31,13 +19,6 @@ export default function PlayArea(props) {
     return null;
   }
 
-  /**
-   * プレイヤー用チップ取得
-   * -----
-   * プレイヤーの勝敗、ブラックジャックまたはバーストしたかどうかを表示するチップを返却する
-   *
-   * @return {Chip} Chip
-   */
   function getPlayersChip() {
     if (BJUtils.getTotal(props.playersHand) > 21) {
       return <Chip label="BUSTED!!" className={classes.winOrLose} />;
@@ -65,7 +46,6 @@ export default function PlayArea(props) {
           <Grid container direction="row">
             {props.dealersHand.map((card, index) => {
               let marginLeft = index === 0 ? "0px" : "-50px";
-              // ディーラーのターンが終わっていなければ、２枚めのカードを隠す
               const hide = index === 1 && !props.isDealersTurnEnd ? true : false;
               return (
                 <Grid item key={index} style={{ marginLeft: marginLeft }}>

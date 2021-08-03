@@ -1,6 +1,5 @@
 import { makeStyles } from '@material-ui/styles'
 
-/** スタイル設定フック */
 export const useStyles = makeStyles({
   playArea: {
     margin: '10px 25px',

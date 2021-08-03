@@ -24,7 +24,7 @@ const useCardStyles = makeStyles({
           return 'black'
       }
     },
-    border: '1px solid grey',
+    border: '1px outset lightgrey',
   },
   content: {
     width: '100%',

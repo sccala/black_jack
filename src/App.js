@@ -9,6 +9,9 @@ export default function App() {
   function handleClick() {
     setIsGameStart(true)
   }
+  function handleClick() {
+    setIsGameStart(true)
+  }
   // prettier-ignore
   return (
     <Box className="App">
@@ -17,7 +20,8 @@ export default function App() {
       </Typography>
       <Typography>
         <Box className={'rule'}>
-          The goal of blackjack is to beat the dealer's hand without going over 21. Face cards are worth 10. Aces are worth 1 or 11, whichever makes a
+         The goal of blackjack is to beat the dealer's hand without going over 21. Face cards are worth 10.
+          Aces are worth 1 or 11, whichever makes a
           better hand. Each player starts with two cards, one of the dealer's cards is hidden until the end. To 'Hit' is to ask for another card. To
           'Stand' is to hold your total and end your turn. If you go over 21 you bust, and the dealer wins regardless of the dealer's hand.
         </Box>
