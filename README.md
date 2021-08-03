@@ -1,6 +1,6 @@
 # Objective
 
-This is a web app to play black jack with a virtual dealer. 
+This is a web app to play black jack with a virtual dealer. I made this app for one of the Mintbean Hackathon, but also to solidify my knowledge for front-end development. 
 
 ## Rules of Black Jack
 
