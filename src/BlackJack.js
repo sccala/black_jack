@@ -19,15 +19,6 @@ const initialState = {
   isDealersTurnEnd: false,
 }
 
-/**
- * レデューサー
- * -----
- * ゲームを進行するための処理を行う
- *
- * @param {object} state
- * @param {object} action
- * @return {object} state
- */
 function reducer(state, action) {
   switch (action.type) {
     case 'init': {
@@ -60,7 +51,7 @@ function reducer(state, action) {
       }
       return { ...state }
     }
-    case 'dealersAction':{
+    case 'dealersAction': {
       if (BJUtils.shouldHitForDealer(state.dealersHand)) {
         const [newDeck, newHand] = BJUtils.deal(state.deck, state.dealersHand)
         return {
@@ -81,7 +72,8 @@ function reducer(state, action) {
       }
     }
     case 'shuffle': {
-      return { ...state }
+      const newDeck = BJUtils.getDeck(3)
+      return { ...state, deck: newDeck }
     }
     case 'checkBlackJack': {
       if (BJUtils.isBlackJack(state.dealersHand) || BJUtils.isBlackJack(state.playersHand)) {
@@ -89,7 +81,6 @@ function reducer(state, action) {
       }
       return { ...state }
     }
-      
     default:
       return { ...state }
   }
@@ -102,30 +93,38 @@ function reducer(state, action) {
 export default function BlackJack() {
   const [state, dispatch] = useReducer(reducer, initialState)
 
-    useEffect(() => {
-      if (state.dealersHand.length < 2 || state.playersHand.length < 2) {
-        dispatch({ type: 'init' })
-      }
-    }, [state.dealersHand, state.playersHand])
-
-    useEffect(() => {
-      if (state.dealersHand.length === 2 && state.playersHand.length === 2) {
-        dispatch({ type: 'checkBlackJack' })
-      }
-    }, [state.dealersHand, state.playersHand])
-
-  // プレイヤーのターンが終わったら、ディーラーのアクションを実行
   useEffect(() => {
-    if (state.isPlayersTurnEnd === true && state.isDealersTurnEnd === false) dispatch({ type: 'dealersAction' })
+    if (state.dealersHand.length < 2 || state.playersHand.length < 2) {
+      dispatch({ type: 'init' })
+    }
+  }, [state.dealersHand, state.playersHand])
+
+  useEffect(() => {
+    if (state.dealersHand.length === 2 && state.playersHand.length === 2) {
+      dispatch({ type: 'checkBlackJack' })
+    }
+  }, [state.dealersHand, state.playersHand])
+
+  useEffect(() => {
+    if (state.isPlayersTurnEnd && !state.isDealersTurnEnd) dispatch({ type: 'dealersAction' })
   }, [state.isPlayersTurnEnd, state.isDealersTurnEnd, state.dealersHand])
 
-  // シャッフルタイム
-  useEffect(() => {}, [])
+  // Shuffle time
+  useEffect(() => {
+    if (state.deck.length <= state.minimumNumber) {
+      dispatch({ type: 'shuffle' })
+      toast('Shuffled!!', {
+        style: {
+          borderRadius: '10px',
+          background: '#737373',
+          color: '#ffffff',
+        },
+      })
+    }
+  }, [state.deck, state.minimumNumber])
 
   /**
-   * HITする
-   * -----
-   * HIT して、ハンドのスコアをチェックする
+   * HIT and score check
    */
   function doHit() {
     dispatch({ type: 'hit' })
@@ -133,33 +132,22 @@ export default function BlackJack() {
   }
 
   /**
-   * STAND する
-   * -----
-   * STAND する
+   * STAND 
    */
   function doStand() {
     dispatch({ type: 'stand' })
   }
 
   /**
-   * 次のターンに進む
-   * -----
-   * 次のターンに進む
+   * next turn
    */
   function next() {
     dispatch({ type: 'next' })
   }
 
-  /**
-   * ボタン取得
-   * -----
-   * 現在のターンに従って、ゲーム進行ボタンまたはブラックジャックボタンを返却する
-   *
-   * @return {JSX.Element} ゲーム進行ボタンまたはブラックジャックボタン
-   */
   function getButtons() {
     if (state.isDealersTurnEnd && state.isPlayersTurnEnd) {
-      return <GameProgressButton onClick={next} />
+      return <GameProgressButton onClickNext={next} />
     }
     if (state.isPlayersTurnEnd === false) {
       return <BlackJackButtons onClickHit={doHit} onClickStand={doStand} />

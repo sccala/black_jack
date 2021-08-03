@@ -115,23 +115,40 @@ export function getScoreForDisplay(hand) {
   return score[0]
 }
 
-/**
- * ハンドの最終スコア取得
- * -----
- * 引数のハンドの最終的なスコアを返却する
- *
- * @param {Array<{suit: string, rank: string}>} hand
- * @return {number} score
- */
-export function getLastScore(hand) {}
+export function getLastScore(hand) {
+  let score = getScore(hand)
+  if (isSoftHand(hand)) {
+    return score[1]
+  }
+  return score[0]
+}
 
-/**
- * 勝敗判定
- * -----
- * プレイヤーとディーラーの勝敗を判定する
- *
- * @param {Array<{suit: string, rank: string}>} dealersHand
- * @param {Array<{suit: string, rank: string}>} playersHand
- * @return {string} 勝敗文字列
- */
-export function judge(dealersHand, playersHand) {}
+export function judge(dealersHand, playersHand) {
+  const dealersScore = getLastScore(dealersHand)
+  const playersScore = getLastScore(playersHand)
+  if (playersScore > 21) {
+    return 'LOSE!!'
+  }
+
+  if (dealersScore === playersScore) {
+    return 'PUSH'
+  }
+
+  if (isBlackJack(playersHand)) {
+    return 'BLACK JACK!!'
+  }
+
+  if (isBlackJack(dealersHand)) {
+    return 'LOSE!!'
+  }
+
+  if (dealersScore > 21) {
+    return 'WIN!!'
+  }
+  if (dealersScore < playersScore) {
+    return 'WIN!!'
+  }
+  if (dealersScore > playersScore) {
+    return 'LOSE!!'
+  }
+}
