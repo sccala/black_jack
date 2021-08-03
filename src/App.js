@@ -29,7 +29,7 @@ export default function App() {
         ) : (
           <Box className="center-button">
             <Button variant="contained" onClick={handleClick}>
-              START
+              Let's Start!
             </Button>
           </Box>
         )}
