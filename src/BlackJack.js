@@ -84,29 +84,35 @@ function reducer(state, action) {
       return { ...state }
     }
     case 'checkBlackJack': {
+      if (BJUtils.isBlackJack(state.dealersHand) || BJUtils.isBlackJack(state.playersHand)) {
+        return { ...state, isDealersTurnEnd: true, isPlayersTurnEnd: true }
+      }
       return { ...state }
     }
+      
     default:
       return { ...state }
   }
 }
 
 /**
- * BlackJack コンポーネント
+ * BlackJack Component
  * -----
  */
 export default function BlackJack() {
   const [state, dispatch] = useReducer(reducer, initialState)
 
-  // カード初期化
-  useEffect(() => {}, [])
+    useEffect(() => {
+      if (state.dealersHand.length < 2 || state.playersHand.length < 2) {
+        dispatch({ type: 'init' })
+      }
+    }, [state.dealersHand, state.playersHand])
 
-  // ブラックジャックかどうかをチェック
-  useEffect(() => {
-    if (state.dealersHand.length < 2 || state.playersHand.length < 2) {
-      dispatch({ type: 'init' })
-    }
-  }, [state.dealersHand, state.playersHand])
+    useEffect(() => {
+      if (state.dealersHand.length === 2 && state.playersHand.length === 2) {
+        dispatch({ type: 'checkBlackJack' })
+      }
+    }, [state.dealersHand, state.playersHand])
 
   // プレイヤーのターンが終わったら、ディーラーのアクションを実行
   useEffect(() => {

@@ -43,15 +43,12 @@ export function deal(deck, hand) {
   return [newDeck, newHand]
 }
 
-/**
- * Ace 所持確認
- * -----
- * ハンドの中に Ace が含まれているかどうかを判定する
- *
- * @param {Array<{suit: string, rank: string}>} hand
- * @return {boolean} Ace を持っているかどうか
- */
-export function hasAce(hand) {}
+export function hasAce(hand) {
+  for (const card of hand) {
+    if (card.rank === 'A') return true
+  }
+  return false
+}
 
 export function shouldHitForDealer(hand) {
   let total = getTotal(hand)
@@ -64,34 +61,17 @@ export function shouldHitForDealer(hand) {
   return false
 }
 
-/**
- * Ace カード判定
- * -----
- * 引数のカードが Ace かどうかを判定する
- *
- * @param {{suit: string, rank: string}} card
- * @return {boolean} カードが Ace かどうか
- */
-export function isAce(card) {}
+export function isAce(card) {
+  if (card.rank === 'A') {
+    return true
+  }
+  return false
+}
 
-/**
- * フェイスカード or 10 カード判定
- * -----
- * 引数のカードがフェイスガード（絵札）か 10 カードかどうかを判定する
- *
- * @param {{suit: string, rank: string}} card
- * @return {boolean} フェイスカードか 10 カードかどうか
- */
-export function isFaceCardOrTen(card) {}
+export function isFaceCardOrTen(card) {
+  return getRankNum(card.rank) === 10
+}
 
-/**
- * ソフトハンド判定
- * -----
- * 引数のハンドがソフトハンドかどうかを判定する
- *
- * @param {Array<{suit: string, rank: string}>} hand
- * @return {boolean} ソフトハンドかどうか
- */
 export function isSoftHand(hand) {
   if (isBlackJack(hand)) {
     return false
@@ -105,35 +85,35 @@ export function isSoftHand(hand) {
   return false
 }
 
-/**
- * ブラックジャック判定
- * -----
- * 引数のハンドがブラックジャックかどうか判定する
- *
- * @param {Array<{suit: string, rank: string}>} hand
- * @return {boolean} ブラックジャックかどうか
- */
-export function isBlackJack(hand) {}
+export function isBlackJack(hand) {
+  if (hand.length !== 2) {
+    return false
+  }
+  const firstCard = hand[0]
+  const secondCard = hand[1]
+  if ((isAce(firstCard) && isFaceCardOrTen(secondCard)) || (isFaceCardOrTen(firstCard) && isAce(secondCard))) {
+    return true
+  }
+  return false
+}
 
-/**
- * ハンドのスコア取得
- * -----
- * 引数のハンドのスコアを返却する
- *
- * @param {Array<{suit: string, rank: string}>} hand
- * @return {Array<number>} ハンドのスコア
- */
-export function getScore(hand) {}
+export function getScore(hand) {
+  if (isBlackJack(hand)) {
+    return [21]
+  }
+  if (isSoftHand(hand)) {
+    return [getTotal(hand), getTotal(hand) + 10]
+  }
+  return [getTotal(hand)]
+}
 
-/**
- * ハンドのスコア（表示用）取得
- * -----
- * 画面に表示するためのハンドのスコアを返却する
- *
- * @param {Array<{suit: string, rank: string}>} hand
- * @return {string}
- */
-export function getScoreForDisplay(hand) {}
+export function getScoreForDisplay(hand) {
+  let score = getScore(hand)
+  if (isSoftHand(hand)) {
+    return `${score[0]} | ${score[1]}`
+  }
+  return score[0]
+}
 
 /**
  * ハンドの最終スコア取得

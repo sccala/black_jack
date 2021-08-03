@@ -34,14 +34,13 @@ export default function PlayArea(props) {
   return (
     <Box className={classes.playArea}>
       <Grid container direction="column" spacing={5} alignItems="center" justify="center">
-        <Box className="arrow_box_common arrow_box_dealer" visibility="">
-          {/* Task 1 */}
+        <Box className="arrow_box_common arrow_box_dealer" visibility={props.isPlayersTurnEnd ? 'visible' : 'hidden'}>
+          {props.dealersHand.length>=2&&BJUtils.getScoreForDisplay(props.dealersHand)}
         </Box>
         <Grid item className={classes.cardArea}>
           <Grid container direction="row">
             {props.dealersHand.map((card, index) => {
               let marginLeft = index === 0 ? '0px' : '-50px'
-              // ディーラーのターンが終わっていなければ、２枚めのカードを隠す
               const hide = index === 1 && !props.isDealersTurnEnd ? true : false
               return (
                 <Grid item key={index} style={{ marginLeft: marginLeft }}>
@@ -65,7 +64,7 @@ export default function PlayArea(props) {
           </Grid>
           <Box className={classes.winOrLoseContainer}>{getPlayersChip()}</Box>
         </Grid>
-        <Box className="arrow_box_common arrow_box_player">{/* Task 4 */}</Box>
+        <Box className="arrow_box_common arrow_box_player">{props.playersHand.length >= 2 && BJUtils.getScoreForDisplay(props.playersHand)}</Box>
       </Grid>
     </Box>
   )
