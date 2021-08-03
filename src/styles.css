@@ -1,19 +1,28 @@
-
-
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap');
 html {
-    background-color: #6f4b3e;
+    background: linear-gradient(to bottom right, rgb(204, 204, 204), rgb(136, 135, 135));
 }
 
 .App {
-    font-family: sans-serif;
+    margin-top: 2%;
+    font-family: 'Roboto', sans-serif;
     text-align: center;
+}
+
+.rule {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    color: white;
+    padding: 0 7%;
+    margin: 3% 7% 7% 7%;
 }
 
 .h1-header {
     font-size: 32px;
-    font-weight: bold;
-    margin-bottom: 0;
-    color: #f8f4e6;
+    font-weight: 400;
+    margin-bottom: 2%;
+    margin-top: 0;
+    color: #ffffff;
 }
 
 .h2-header {
@@ -23,11 +32,10 @@ html {
 }
 
 #table {
-    width: 95%;
+    width: 70%;
     height: 600px;
-    background-color: #2e8b57;
-    border: 5px solid #595857;
-    border-radius: 5px;
+    background: linear-gradient(to bottom right, rgb(84, 153, 111), rgb(38, 97, 60));
+    border-radius: 10px;
     margin: auto;
 }
 
@@ -88,4 +96,22 @@ html {
     top: 100%;
     left: 50%;
     border-top-color: #535353;
+}
+
+#footer {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    color: white;
+    margin: 3%;
+}
+
+@media only screen and (max-width: 600px) {
+    .rule {
+        font-size: 13px;
+        margin: 5% 5% 10% 5%;
+        width: 90vw;
+    }
+    #table {
+        width: 90vw;
+    }
 }

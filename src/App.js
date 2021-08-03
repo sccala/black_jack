@@ -13,15 +13,30 @@ export default function App() {
   return (
     <Box className="App">
       <Typography variant="h1">
-        <Box className={"h1-header"}>BlackJack</Box>
+        <Box className={'h1-header'}>BlackJack</Box>
       </Typography>
-      <Typography variant="h2">
-        <Box className={"h2-header"}>on Codesandbox</Box>
+      <Typography>
+        <Box className={'rule'}>
+          The goal of blackjack is to beat the dealer's hand without going over 21. Face cards are worth 10. Aces are worth 1 or 11, whichever makes a
+          better hand. Each player starts with two cards, one of the dealer's cards is hidden until the end. To 'Hit' is to ask for another card. To
+          'Stand' is to hold your total and end your turn. If you go over 21 you bust, and the dealer wins regardless of the dealer's hand.
+        </Box>
       </Typography>
+
       <Box id="table">
-        {isGameStart ? <BlackJack />
-                     : <Box className="center-button"><Button variant="contained" onClick={handleClick}>START</Button></Box>}
+        {isGameStart ? (
+          <BlackJack />
+        ) : (
+          <Box className="center-button">
+            <Button variant="contained" onClick={handleClick}>
+              START
+            </Button>
+          </Box>
+        )}
       </Box>
+      <Typography id="footer">
+        @2021 Made by <a href="https://github.com/sccala">Sunsoo Chung </a>
+      </Typography>
     </Box>
-  );
+  )
 }
