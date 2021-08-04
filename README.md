@@ -1,5 +1,5 @@
 # Black Jack (21 Game)
-[![Black Jack Screen Shot][product-screenshot]](https://github.com/sccala/black_jack/tree/master/public/blackjackmobile.png?raw=true)
+[![Black Jack Screen Shot][product-screenshot]]<img width='50%' src="https://github.com/sccala/black_jack/tree/master/public/blackjackmobile.png?raw=true"
 
 ## Introduction
 This is a web app to play black jack with a virtual dealer. I made this app for one of the Mintbean Hackathon, but also to solidify my knowledge for front-end development. 
@@ -19,5 +19,5 @@ This was made with React and material UI, and deployed on the Netlify.
 * Netlify
 
 ## Tutorial
-I made this along with one of the quiz-based tutorial from Mr. Hakodatetaro https://note.com/hakolab/n/n781f25b6a8db?magazine_key=mf69781e606c8. 
+I made this along with one of the quiz-based tutorial from Mr. [Hakodatetaro] (https://note.com/hakolab/n/n781f25b6a8db?magazine_key=mf69781e606c8). 
 This was a quiz-based tutorial. With given file stracture and basic scafold, I filled the style, process, and algorythm.
