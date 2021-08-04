@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Box, Button } from '@material-ui/core'
 
 export default function BlackJackButtons(props) {

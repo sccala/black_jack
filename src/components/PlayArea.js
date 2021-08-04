@@ -7,8 +7,6 @@ import * as BJUtils from "../utils/BlackJackUtils";
 
 export default function PlayArea(props) {
   const classes = useStyles();
-
-  
   function getDealersChip() {
     if (BJUtils.isBlackJack(props.dealersHand)) {
       return <Chip label="BLACK JACK!!" className={classes.winOrLose} />;

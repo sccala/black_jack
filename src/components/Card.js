@@ -45,13 +45,7 @@ const useCardStyles = makeStyles({
   },
 })
 
-/**
- * カードコンポーネント
- * -----
- *
- * @param {object} props
- * @return {JSX.Element} カードコンポーネント
- */
+
 export default function Card(props) {
   const classes = useCardStyles(props)
   const topAndBottom = props.card === null || props.hide ? '?' : props.card.suit + props.card.rank
