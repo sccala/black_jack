@@ -1,5 +1,5 @@
 # Black Jack (21 Game)
-[![Black Jack Screen Shot][product-screenshot]](https://github.com/sccala/black_jack/tree/master/public/blackjackmobile.png)
+[![Black Jack Screen Shot][product-screenshot]](https://github.com/sccala/black_jack/tree/master/public/blackjackmobile.png?raw=true)
 
 ## Introduction
 This is a web app to play black jack with a virtual dealer. I made this app for one of the Mintbean Hackathon, but also to solidify my knowledge for front-end development. 
