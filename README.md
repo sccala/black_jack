@@ -13,10 +13,13 @@ This is a web app to play black jack with a virtual dealer. I made this app for 
 # Development
 ## Technologies and Frameworks 
 This was made with React and material UI, and deployed on the Netlify. 
-* React
-* Material UI
-* Netlify
+* [React](https://reactjs.org/)
+* [Material UI](https://material-ui.com/)
+* [Netlify](https://www.netlify.com/)
+
+## Demo
+Please see the deployed app from [here](https://simplebj.netlify.app/)
 
 ## Tutorial
-I made this along with one of the quiz-based tutorial from [Mr.Hakodatetaro] (https://note.com/hakolab/n/n781f25b6a8db?magazine_key=mf69781e606c8). 
+I made this along with one of the quiz-based tutorial from [Mr.Hakodatetaro](https://note.com/hakolab/n/n781f25b6a8db?magazine_key=mf69781e606c8). 
 This was a quiz-based tutorial. With given file stracture and basic scafold, I filled the style, process, and algorythm.
