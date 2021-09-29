@@ -5,23 +5,21 @@ import BlackJackButtons from './components/BlackJackButtons'
 import GameProgressButton from './components/GameProgressButton'
 import * as BJUtils from './utils/BlackJackUtils'
 import { toast, Toaster } from 'react-hot-toast'
-import { getDeck } from './utils/BlackJackUtils'
 
 const initialDeck = BJUtils.getDeck(3)
 const penetration = 0.8
 
 const initialState = {
   deck: initialDeck,
-  minimumNumber: BJUtils.getMinimumNumber(initialDeck, penetration),
-  dealersHand: [],
+  minimumNumber: BJUtils.getMinimumNumber(initialDeck , penetration),
+  dealersHand: []  ,
   playersHand: [],
-  isPlayersTurnEnd: false,
-  isDealersTurnEnd: false,
+  isPlayersTurnEnd:false, isDealersTurnEnd: false,
 }
 
 function reducer(state, action) {
   switch (action.type) {
-    case 'init': {
+case 'init': {
       if (state.playersHand.length < 2) {
         const [newDeck, newHand] = BJUtils.deal(state.deck, state.playersHand)
         return { ...state, deck: newDeck, playersHand: newHand }
