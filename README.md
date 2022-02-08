@@ -1,7 +1,7 @@
 # Black Jack (21 Game)
 
 ## Introduction
-This is a web app to play black jack with a virtual dealer. I made this app for one of the Mintbean Hackathon, but also to solidify my knowledge for front-end development. 
+This is a web app to play black jack with a virtual dealer. I made this app for one of the Mintbean Hackathon, and also to solidify my knowledge for front-end development. 
 
 ## Rules of Black Jack
 - The goal of blackjack is to beat the dealer's hand without going over 21.
@@ -18,7 +18,7 @@ This was made with React and material UI, and deployed on the Netlify.
 * [Netlify](https://www.netlify.com/)
 
 ## Demo
-Please see the deployed app from [here](https://simplebj.netlify.app/)
+Deployed on [Netlify](https://simplebj.netlify.app/)
 
 ## Tutorial
 I made this along with one of the quiz-based tutorial from [Mr.Hakodatetaro](https://note.com/hakolab/n/n781f25b6a8db?magazine_key=mf69781e606c8). 

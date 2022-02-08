@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react'
+import { useEffect, useReducer } from 'react'
 import { Box } from '@material-ui/core'
 import PlayArea from './components/PlayArea'
 import BlackJackButtons from './components/BlackJackButtons'
@@ -11,15 +11,16 @@ const penetration = 0.8
 
 const initialState = {
   deck: initialDeck,
-  minimumNumber: BJUtils.getMinimumNumber(initialDeck , penetration),
-  dealersHand: []  ,
+  minimumNumber: BJUtils.getMinimumNumber(initialDeck, penetration),
+  dealersHand: [],
   playersHand: [],
-  isPlayersTurnEnd:false, isDealersTurnEnd: false,
+  isPlayersTurnEnd: false,
+  isDealersTurnEnd: false,
 }
 
 function reducer(state, action) {
   switch (action.type) {
-case 'init': {
+    case 'init': {
       if (state.playersHand.length < 2) {
         const [newDeck, newHand] = BJUtils.deal(state.deck, state.playersHand)
         return { ...state, deck: newDeck, playersHand: newHand }
@@ -130,7 +131,7 @@ export default function BlackJack() {
   }
 
   /**
-   * STAND 
+   * STAND
    */
   function doStand() {
     dispatch({ type: 'stand' })
@@ -155,7 +156,7 @@ export default function BlackJack() {
   return (
     <Box>
       <div>
-        <Toaster position="bottom-center" reverseOrder={false} />
+        <Toaster position='bottom-center' reverseOrder={false} />
       </div>
       <PlayArea
         dealersHand={state.dealersHand}
